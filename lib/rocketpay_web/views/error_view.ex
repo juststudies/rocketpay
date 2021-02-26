@@ -1,6 +1,8 @@
 defmodule RocketpayWeb.ErrorView do
   use RocketpayWeb, :view
 
+  import Ecto.Changeset, only: [traverse_errors: 2]
+
   alias Ecto.Changeset
 
   # If you want to customize a particular status code
@@ -20,8 +22,12 @@ defmodule RocketpayWeb.ErrorView do
     %{message: translate_errors(changeset)}
   end
 
+  def render("400.json", %{result: message}) do
+    %{message: message}
+  end
+
   defp translate_errors(changeset) do
-    Changeset.traverse_errors(changeset, fn {msg, opts} ->
+    traverse_errors(changeset, fn {msg, opts} ->
 
       Enum.reduce(opts, msg, fn {key, value}, acc ->
 
