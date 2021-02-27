@@ -25,4 +25,8 @@ This is an Elixir's Api that "simulates" a payment.
 
 ## Status
 
-In Building (...)
+[x] Completed
+
+## Warning!
+
+The present applications has 57.9% covered by tests!
